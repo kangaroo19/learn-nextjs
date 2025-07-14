@@ -32,6 +32,12 @@ export async function createInvoice(formData: FormData) {
   redirect("/dashboard/invoices");
 }
 
+export async function deleteInvoice(id: string) {
+  throw new Error('Failed to Delete Invoice');
+  await sql`DELETE FROM invoices WHERE id = ${id}`;
+  revalidatePath("/dashboard/invoices");
+}
+
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
 // ...
